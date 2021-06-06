@@ -1,0 +1,16 @@
+
+sed -rn '/([0-9])([0-9])\/([0-9])([0-9])\/\4\3\2\1/p' dates.txt
+
+sed -r 's/^\([0-9]{3}\) /\(800\) /g' letter.txt
+sed -r 's/[()]//g' letter.txt
+sed -r 's/([0-9]{3}) ([0-9]{3})-([0-9]{4})/\1-\2-\3/g' letter.txt
+sed -r 's/([0-9]{5})-([0-9]{4})/\1-1234/g' letter.txt
+sed -r 's/^(Lois) (Lane)/\1 Kent/g' letter.txt
+sed -r 's/([A-Za-z0-9]+) ([A-Za-z0-9]+) \<Lane\>/\1 \2 Ln/g' letter.txt
+sed -r 's/ ([0-9]{3})-([0-9]{3})-([0-9]{4})./ \2-\1-\3./g' letter.txt
+sed -r 's/ @([0-9]{3})/ #\1/g' letter.txt
+sed -r 's/^([A-Za-z]+); /\1, /g' letter.txt
+sed '$a p.s. your winnings must be claimed by February 29th.'
+
+
+gawk '{FS=","}; NF > 1 &&  $3<3 && ($3-$2)<.10{print $1, $3}' gasoline.txt
